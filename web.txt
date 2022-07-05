@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Growing Shrinking Text</title>
+<script>
+var fontsize = 12;
+var growing = true;
+function controlText()
+{
+if(fontsize == 50)
+{
+message.style.color = "blue";
+message.innerHTML = "TEXT-SHRINKING";
+growing = false;
+}
+if(growing && fontsize < 50)
+message.style.fontSize = ++fontsize + "pt";
+else if(!growing && fontsize > 5)
+message.style.fontSize = --fontsize + "pt";
+else
+clearInterval();
+}
+</script>
+<style>
+#message {
+color:red;
+text-align:center;
+padding-top:150px;
+}
+</style>
+</head>
+<body onload = "setInterval(controlText, 100);">
+<div id="message">TEXT-GROWING</div>
+</body>
+</html>
+//web 6.php
+<?php
+//Track webpage visitors count
+function getCount()
+{
+$filename = "counter.txt";
+file_exists($filename) or die("<h3>Sorry, counter file does not exist.<h3>");
+$fh = fopen($filename, "r+") or die("<h3>Sorry, couldn't open counter file.<h3>");
+$count = fgets($fh) + 1;
+fseek($fh, 0);
+fputs($fh, $count);
+fclose($fh);
+return $count;
+}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Visitors Count</title>
+</head>
+<body style='background-color:#eeeeee'>
+<div style='text-align:center; margin-top:150px'>
+<h2> Visitor count :
+<span style='color:red'> <?php echo getCount() ?> </span>
+</h2>
+</div>
+</body>
+</html>
+//web 8(8_lib,8a,8b,8c,8d)
+//8_lib.php
+<?php
+function compute($a, $operation, $b) //Arithmetic Calculator
+{
+switch($operation)
+{
+case '+': return $a + $b;
+case '-': return $a - $b;
+case '*': return $a * $b;
+case '/': return $a / $b;
+case '%': return $a % $b;
+}
+}
+function matrix_print($m)
+//Print matrix in rows & column form
+{
+for($i=0; $i<3; $i++)
+{
+for($j=0; $j<3; $j++)
+{
+echo $m[$i][$j] . "&nbsp;&nbsp;";
+}
+echo "<br>";
+}
+}
+function matrix_sum($a, $b)
+//Addition of Matrix a & b
+{
+for($i=0; $i<3; $i++)
+{
+for($j=0; $j<3; $j++)
+{
+$c[$i][$j] = $a[$i][$j] + $b[$i][$j];
+}
+}
+return $c;
+}
+function matrix_product($a, $b) //Multiply matrix a & b
+{
+for($i=0; $i<3; $i++)
+{
+for($j=0; $j<3; $j++)
+{
+$c[$i][$j] = 0;
+for($k=0; $k<3; $k++)
+{
+$c[$i][$j] += $a[$i][$k] * $b[$k][$j];
+}
+}
+}
+return $c;
+}
+function matrix_transpose($a) //Compute Matrix Transpose
+{
+for($i=0; $i<3; $i++)
+{
+for($j=0; $j<3; $j++)
+{
+$b[$i][$j] = $a[$j][$i];
+}
+}
+return $b;
+}
+?>
+//****************************************************************
+//8a.php
+<?php
+//Simple Calculator
+include "8_lib.php";
+$op1= 10;
+$op2= 2;
+$operation = "+";
+$result = compute($op1, $operation, $op2);
+echo "<h3>$op1 $operation $op2 = $result</h3>";
+?>
+//***********************************************
+//8b.php
+<?php
+//Matrix Transpose
+include "8_lib.php";
+$a = array(array(1,2,3), array(4,5,6), array(7,8,9));
+$b = matrix_transpose($a);
+echo "<br>Original Matrix A<br>";
+matrix_print($a);
+echo "<br>Matrix Transpose A<sup>T</sup><br>";
+matrix_print($b);
+?>
+//*******************************************************
+//8c.php
+<?php
+//Matrix Multiplication
+include "8_lib.php";
+$a = array(array(1,2,3), array(4,5,6), array(7,8,9));
+$b = array(array(1,2,3), array(4,5,6), array(7,8,9));
+$c = matrix_product($a, $b);
+echo "<br>Matrix A<br>";
+matrix_print($a);
+echo "<br>Matrix B<br>";
+matrix_print($b);
+echo "<br>Matrix Product A x B<br>";
+matrix_print($c);
+?>
+//************************************************************
+//8d.php
+<?php
+//Matrix Addition
+include "8_lib.php";
+$a = array(array(1,2,3), array(4,5,6), array(7,8,9));
+$b = array(array(1,2,3), array(4,5,6), array(7,8,9));
+$c = matrix_sum($a, $b);
+echo "<br>Matrix A<br>";
+matrix_print($a);
+echo "<br>Matrix B<br>";
+matrix_print($b);
+echo "<br>Matrix Sum A + B<br>";
+matrix_print($c);
+?>
+**************************************************************
+//web 9.php
+<?php
+$states = "Mississippi Alabama Texas Massachusetts Kansas";
+$statesArray = [];
+$states1 = explode(' ',$states);
+echo "Original Array :<br>";
+foreach ( $states1 as $i => $value )
+print("STATES[$i]=$value<br>");
+foreach($states1 as $state) {
+if(preg_match( '/xas$/', ($state)))
+$statesArray[0] = ($state);
+}
+foreach($states1 as $state) {
+if(preg_match('/^k.*s$/i', ($state)))
+$statesArray[1] = ($state);
+}
+foreach($states1 as $state) {
+if(preg_match('/^M.*s$/', ($state)))
+$statesArray[2] = ($state);
+}
+foreach($states1 as $state){
+if(preg_match('/a$/', ($state)))
+$statesArray[3] = ($state);
+}
+echo "<br><br>Resultant Array :<br>";
+foreach ( $statesArray as $array => $value )
+print("STATES[$array]=$value<br>");
+?>
