@@ -33,6 +33,9 @@ padding-top:150px;
 <div id="message">TEXT-GROWING</div>
 </body>
 </html>
+
+
+
 //web 6.php
 <?php
 //Track webpage visitors count
@@ -61,6 +64,9 @@ return $count;
 </div>
 </body>
 </html>
+
+
+
 //web 8(8_lib,8a,8b,8c,8d)
 //8_lib.php
 <?php
@@ -127,6 +133,9 @@ return $b;
 }
 ?>
 //****************************************************************
+
+
+
 //8a.php
 <?php
 //Simple Calculator
@@ -180,6 +189,9 @@ echo "<br>Matrix Sum A + B<br>";
 matrix_print($c);
 ?>
 **************************************************************
+
+
+
 //web 9.php
 <?php
 $states = "Mississippi Alabama Texas Massachusetts Kansas";
